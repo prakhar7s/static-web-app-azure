@@ -1,22 +1,35 @@
-import axios from 'axios';
-import { useEffect } from 'react';
-import './App.css';
-
-const BASE_URL = 'http://localhost:7071/'
+import axios from "axios";
+import { useEffect, useState  } from "react";
+import { API } from "./config";
+import "./App.css";
 
 function App() {
 
-useEffect(() => {
-  axios({ url : BASE_URL + 'api/GetName',             headers: { 'Content-Type': 'application/json','Access-Control-Allow-Headers':"*"}
-, method: "GET"}).then(body => {
-    console.log(body)
-  })
-}, [])
+  const [backendMsg, setBackendMsg] = useState (null)
+  useEffect(() => {
 
+    
+    axios({
+      url: API + "/api/message",
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Headers": "*",
+      },
+      method: "GET",
+    }).then((body) => {
+      setBackendMsg(body?.data?.body);
+    });
+  }, []);
 
   return (
     <div className="App">
-      <h1>First commit after deployment</h1>
+      {
+        backendMsg === null ? <h1>Loading....</h1>  :
+
+
+
+      <h1>{backendMsg}</h1>
+      }
     </div>
   );
 }
