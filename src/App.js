@@ -1,6 +1,22 @@
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import './App.css';
 
+const BASE_URL = 'http://localhost:7071/'
+
 function App() {
+
+  const [backendMsg, setBackendMsg] = useState(null);
+
+
+useEffect(() => {
+  axios({ url : BASE_URL + 'api/GetName',             headers: { 'Content-Type': 'application/json','Access-Control-Allow-Headers':"*"}
+, method: "GET"}).then(body => {
+    console.log(body)
+  })
+}, [])
+
+
   return (
     <div className="App">
       <h1>First commit after deployment</h1>
