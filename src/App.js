@@ -1,14 +1,11 @@
 import axios from "axios";
-import { useEffect, useState  } from "react";
+import { useEffect, useState } from "react";
 import { API } from "./config";
 import "./App.css";
 
 function App() {
-
-  const [backendMsg, setBackendMsg] = useState (null)
+  const [backendMsg, setBackendMsg] = useState(null);
   useEffect(() => {
-
-    
     axios({
       url: API + "/api/message",
       headers: {
@@ -23,13 +20,7 @@ function App() {
 
   return (
     <div className="App">
-      {
-        backendMsg === null ? <h1>Loading....</h1>  :
-
-
-
-      <h1>{backendMsg}</h1>
-      }
+      {backendMsg === null ? <h1>Loading....</h1> : <h1>{backendMsg}</h1>}
     </div>
   );
 }
